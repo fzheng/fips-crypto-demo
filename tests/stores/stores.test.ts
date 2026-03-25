@@ -3,7 +3,7 @@ import { usePeerStore } from '../../src/store/peer-store';
 import { useSessionStore } from '../../src/store/session-store';
 import { useMessageStore } from '../../src/store/message-store';
 import { useBenchmarkStore } from '../../src/store/benchmark-store';
-import { useSettingsStore } from '../../src/store/settings-store';
+import { useSettingsStore, getServerUrl } from '../../src/store/settings-store';
 
 describe('peer store', () => {
   beforeEach(() => {
@@ -140,9 +140,10 @@ describe('benchmark store', () => {
 
 describe('settings store', () => {
   it('has correct defaults', () => {
-    const { serverUrl, activeTab } = useSettingsStore.getState();
-    expect(serverUrl).toBe('ws://localhost:3001');
+    const { activeTab } = useSettingsStore.getState();
     expect(activeTab).toBe('chat');
+    // serverUrl is now a derived function, not store state
+    expect(getServerUrl()).toBe('ws://localhost:3001');
   });
 
   it('switches active tab', () => {

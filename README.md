@@ -102,12 +102,12 @@ tests/
 
 | Layer | Technology |
 |-------|-----------|
-| Post-Quantum Crypto | [fips-crypto](https://www.npmjs.com/package/fips-crypto) (ML-KEM-768, ML-DSA-65) |
+| Post-Quantum Crypto | [fips-crypto](https://www.npmjs.com/package/fips-crypto) 0.7+ (ML-KEM-768, ML-DSA-65) |
 | Symmetric Encryption | XChaCha20-Poly1305 via @noble/ciphers |
 | Frontend | React 19 + TypeScript + Vite |
 | State Management | Zustand |
 | Styling | Tailwind CSS (dark/light mode) |
-| WebSocket Server | Node.js + ws |
+| WebSocket Server | Node.js 20+ + ws |
 | Testing | Vitest |
 
 ## Tests
@@ -116,20 +116,31 @@ tests/
 make test
 ```
 
-**67 tests** across 10 test files:
+**200 tests** across 21 test files:
 
 | Suite | Tests | Coverage |
 |-------|-------|----------|
 | `crypto/encoding` | 8 | Base64 round-trips, UTF-8, fingerprints |
+| `crypto/encoding-extended` | 19 | All byte values, crypto key sizes, invalid base64, unicode, CJK, empty edge cases |
 | `crypto/identity` | 2 | Key generation, correct sizes, uniqueness |
+| `crypto/identity-extended` | 7 | Unicode nicknames, empty nicknames, key independence, non-zero keys, round-trip with fips-crypto |
 | `crypto/kem` | 4 | Encapsulate/decapsulate match, different secrets per session |
+| `crypto/kem-extended` | 8 | Wrong key decapsulation, multiple sessions, bidirectional KEM, invalid key/ciphertext lengths |
 | `crypto/symmetric` | 8 | Round-trips, nonce uniqueness, tamper detection, wrong-key rejection, 1MB file |
+| `crypto/symmetric-extended` | 18 | Nonce structure, tag authentication, ciphertext overhead, key sensitivity, minimum ciphertext, long strings |
 | `crypto/signing` | 5 | Sign/verify, tamper rejection, wrong-key rejection |
+| `crypto/signing-extended` | 10 | Empty/large messages, signature size, bit-flip detection, truncated/empty signatures, invalid key lengths |
 | `crypto/envelope` | 7 | Deterministic output, metadata binding (timestamp, filename, MIME type) |
+| `crypto/envelope-extended` | 11 | Envelope structure, file metadata sizes, timestamp encoding, 1MB ciphertext, unicode filenames |
 | `protocol/session` | 5 | State machine transitions |
-| `stores` | 8 | All Zustand store CRUD operations |
+| `protocol/session-extended` | 9 | All state × event combinations, full initiator/responder flows, re-initiation, unknown events |
+| `stores` | 10 | All Zustand store CRUD operations |
+| `stores-extended` | 23 | Duplicate peers, empty operations, message ordering, file attachments, crypto detail, stable empty arrays |
 | `server` | 7 | Registration, peer discovery, message relay, error handling |
-| `integration/e2e` | 7 | Full text + file exchange, impersonation detection, relay-tampered metadata detection, tampered ciphertext, multi-message sessions |
+| `server-extended` | 12 | Invalid JSON, missing fields, duplicate registration, list-peers, 3-client topology, relay isolation, bidirectional relay |
+| `integration/e2e` | 7 | Full text + file exchange, impersonation detection, relay-tampered metadata, tampered ciphertext, multi-message |
+| `integration/e2e-extended` | 10 | Three-party sessions, empty/5MB files, MIME/type tampering, bidirectional chat, session re-establishment, unicode messages, base64 transport fidelity |
+| `benchmark/runner` | 8 | Result structure, progress callbacks, math correctness, ML-KEM + ML-DSA operation coverage |
 
 ## Security Model
 
