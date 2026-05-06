@@ -16,7 +16,6 @@ export default function BenchmarkChart({ results }: Props) {
     grouped.set(key, entry);
   }
 
-  // Global max for consistent scale across all operations
   let maxOps = 0;
   for (const { fips, js } of grouped.values()) {
     if (fips) maxOps = Math.max(maxOps, fips.opsPerSec);
@@ -27,11 +26,11 @@ export default function BenchmarkChart({ results }: Props) {
     <div className="space-y-4">
       {Array.from(grouped.entries()).map(([label, { fips, js }]) => (
         <div key={label} className="space-y-1">
-          <div className="text-xs text-gray-500 dark:text-gray-400 font-mono">{label}</div>
+          <div className="text-xs text-slate-500 dark:text-slate-400 font-mono">{label}</div>
           <Bar label="fips-crypto" value={fips?.opsPerSec} max={maxOps}
-            colorBar="bg-quantum-500/70 dark:bg-quantum-500/50"
-            colorLabel="text-quantum-600 dark:text-quantum-400"
-            colorValue="text-white dark:text-quantum-100"
+            colorBar="bg-blue-500/70 dark:bg-blue-500/50"
+            colorLabel="text-blue-600 dark:text-blue-400"
+            colorValue="text-white dark:text-blue-100"
           />
           <Bar label="Pure JS" value={js?.opsPerSec} max={maxOps}
             colorBar="bg-orange-500/70 dark:bg-orange-500/50"
@@ -49,13 +48,12 @@ function Bar({ label, value, max, colorBar, colorLabel, colorValue }: {
   colorBar: string; colorLabel: string; colorValue: string;
 }) {
   const pct = value ? (value / max) * 100 : 0;
-  // Show ops/s label outside the bar if bar is too narrow to fit text
   const labelInside = pct > 12;
 
   return (
     <div className="flex items-center gap-2">
       <span className={`text-[10px] ${colorLabel} w-16 text-right shrink-0`}>{label}</span>
-      <div className="flex-1 bg-gray-100 dark:bg-gray-800 rounded-full h-5 overflow-hidden flex items-center">
+      <div className="flex-1 bg-slate-100 dark:bg-white/5 rounded-full h-5 overflow-hidden flex items-center">
         {value ? (
           <>
             <div
@@ -69,7 +67,7 @@ function Bar({ label, value, max, colorBar, colorLabel, colorValue }: {
               )}
             </div>
             {!labelInside && (
-              <span className="text-[9px] font-mono text-gray-500 dark:text-gray-400 ml-1.5 whitespace-nowrap">
+              <span className="text-[9px] font-mono text-slate-500 dark:text-slate-400 ml-1.5 whitespace-nowrap">
                 {Math.round(value)} ops/s
               </span>
             )}

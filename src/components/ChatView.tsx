@@ -17,13 +17,16 @@ export default function ChatView({ peerId, onSendMessage, onSendFile }: Props) {
   return (
     <div className="flex flex-col h-full">
       {/* Chat header */}
-      <div className="px-4 py-2.5 bg-gray-50 dark:bg-gray-800/60 border-b border-gray-200 dark:border-gray-700 flex items-center gap-3">
-        <span className="w-10 h-10 rounded-full bg-quantum-500 flex items-center justify-center text-sm font-bold text-white shrink-0">
-          {peerId[0]?.toUpperCase()}
-        </span>
+      <div className="px-4 py-2.5 glass-card border-b border-slate-200 dark:border-white/5 flex items-center gap-3">
+        {/* Avatar with gradient ring */}
+        <div className="rounded-full p-[2px] bg-gradient-to-br from-blue-500 to-emerald-500 shrink-0">
+          <span className="w-10 h-10 rounded-full bg-slate-100 dark:bg-surface-dark flex items-center justify-center text-sm font-bold text-blue-600 dark:text-blue-400 font-heading">
+            {peerId[0]?.toUpperCase()}
+          </span>
+        </div>
         <div>
-          <div className="text-sm font-semibold text-gray-900 dark:text-gray-100">{peerId}</div>
-          <div className="text-xs text-gray-500">
+          <div className="text-sm font-semibold text-slate-900 dark:text-slate-100 font-heading">{peerId}</div>
+          <div className="text-xs">
             {isEstablished ? (
               <span className="text-emerald-600 dark:text-emerald-400">
                 <Tooltip
@@ -32,7 +35,7 @@ export default function ChatView({ peerId, onSendMessage, onSendFile }: Props) {
                 />
               </span>
             ) : (
-              'online'
+              <span className="text-slate-400 dark:text-slate-500">online</span>
             )}
           </div>
         </div>

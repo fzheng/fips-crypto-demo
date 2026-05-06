@@ -17,14 +17,14 @@ export default function BenchmarkTable({ results }: Props) {
   }
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-800">
+    <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-white/10">
       <table className="w-full text-xs">
         <thead>
-          <tr className="bg-gray-50 dark:bg-gray-800/60 border-b border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400">
+          <tr className="bg-slate-50 dark:bg-white/5 border-b border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400">
             <th className="text-left py-2.5 px-3 font-medium">Algorithm</th>
             <th className="text-left py-2.5 px-3 font-medium">Operation</th>
             <th className="text-right py-2.5 px-3 font-medium">
-              <span className="text-quantum-600 dark:text-quantum-400">fips-crypto</span>
+              <span className="text-blue-600 dark:text-blue-400">fips-crypto</span>
             </th>
             <th className="text-right py-2.5 px-3 font-medium">
               <span className="text-orange-600 dark:text-orange-400">Pure JS</span>
@@ -37,10 +37,10 @@ export default function BenchmarkTable({ results }: Props) {
             const [algo, op] = key.split('|');
             const speedup = fips && js ? js.avgMs / fips.avgMs : null;
             return (
-              <tr key={key} className="border-b border-gray-100 dark:border-gray-800/50 hover:bg-gray-50 dark:hover:bg-gray-800/30">
-                <td className="py-2 px-3 font-mono text-gray-700 dark:text-gray-300">{algo}</td>
-                <td className="py-2 px-3 text-gray-500 dark:text-gray-400">{op}</td>
-                <td className="py-2 px-3 text-right font-mono text-quantum-700 dark:text-quantum-300">
+              <tr key={key} className="border-b border-slate-100 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-white/5">
+                <td className="py-2 px-3 font-mono text-slate-700 dark:text-slate-300">{algo}</td>
+                <td className="py-2 px-3 text-slate-500 dark:text-slate-400">{op}</td>
+                <td className="py-2 px-3 text-right font-mono text-blue-700 dark:text-blue-300">
                   {fips ? `${fips.avgMs.toFixed(3)} ms` : '—'}
                 </td>
                 <td className="py-2 px-3 text-right font-mono text-orange-700 dark:text-orange-300">

@@ -19,17 +19,20 @@ export default function Sidebar({ onSelectPeer, onInitiateKE }: Props) {
   const { activeTab, setActiveTab } = useSettingsStore();
 
   return (
-    <div className="w-80 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 flex flex-col h-full">
-      {/* Header - WhatsApp style */}
+    <div className="w-80 glass-card border-r border-slate-200 dark:border-white/5 flex flex-col h-full">
+      {/* Header */}
       {identity && (
-        <div className="px-4 py-3 bg-gray-50 dark:bg-gray-800/60 border-b border-gray-200 dark:border-gray-700">
+        <div className="px-4 py-3 border-b border-slate-200 dark:border-white/5">
           <div className="flex items-center gap-3">
-            <span className="w-10 h-10 rounded-full bg-quantum-500 flex items-center justify-center text-sm font-bold text-white shrink-0">
-              {identity.nickname[0]?.toUpperCase()}
-            </span>
+            {/* Avatar with gradient ring */}
+            <div className="rounded-full p-[2px] bg-gradient-to-br from-blue-500 to-emerald-500 shrink-0">
+              <span className="w-10 h-10 rounded-full bg-slate-100 dark:bg-surface-dark flex items-center justify-center text-sm font-bold text-blue-600 dark:text-blue-400 font-heading">
+                {identity.nickname[0]?.toUpperCase()}
+              </span>
+            </div>
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-semibold text-gray-900 dark:text-gray-100">{identity.nickname}</div>
-              <div className="text-[10px] font-mono text-gray-400 dark:text-gray-500 truncate">
+              <div className="text-sm font-semibold text-slate-900 dark:text-slate-100 font-heading">{identity.nickname}</div>
+              <div className="text-[10px] font-mono text-slate-400 dark:text-slate-500 truncate">
                 KEM {fingerprint(identity.kem.publicKey)} · DSA {fingerprint(identity.dsa.publicKey)}
               </div>
             </div>
@@ -38,15 +41,15 @@ export default function Sidebar({ onSelectPeer, onInitiateKE }: Props) {
       )}
 
       {/* Nav tabs */}
-      <div className="flex bg-gray-50 dark:bg-gray-800/40 border-b border-gray-200 dark:border-gray-700">
+      <div className="flex border-b border-slate-200 dark:border-white/5">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`flex-1 py-2.5 text-xs font-semibold uppercase tracking-wide transition-colors ${
+            className={`flex-1 py-2.5 text-xs font-semibold uppercase tracking-wide transition-colors cursor-pointer ${
               activeTab === tab.id
-                ? 'text-quantum-600 dark:text-quantum-400 border-b-2 border-quantum-500'
-                : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-500'
+                : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'
             }`}
           >
             {tab.label}

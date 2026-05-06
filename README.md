@@ -102,7 +102,7 @@ tests/
 
 | Layer | Technology |
 |-------|-----------|
-| Post-Quantum Crypto | [fips-crypto](https://www.npmjs.com/package/fips-crypto) 0.7+ (ML-KEM-768, ML-DSA-65) |
+| Post-Quantum Crypto | [fips-crypto](https://www.npmjs.com/package/fips-crypto) 1.0+ (ML-KEM-768, ML-DSA-65) |
 | Symmetric Encryption | XChaCha20-Poly1305 via @noble/ciphers |
 | Frontend | React 19 + TypeScript + Vite |
 | State Management | Zustand |

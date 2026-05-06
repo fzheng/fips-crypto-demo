@@ -28,21 +28,20 @@ export default function MessageInput({ disabled, onSend, onSendFile }: Props) {
       return;
     }
     onSendFile(file);
-    // Reset so the same file can be selected again
     if (fileRef.current) fileRef.current.value = '';
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="px-4 py-3 bg-gray-50 dark:bg-gray-800/60 border-t border-gray-200 dark:border-gray-700 flex items-center gap-2"
+      className="px-4 py-3 glass-card border-t border-slate-200 dark:border-white/5 flex items-center gap-2"
     >
       {/* Attach button */}
       <button
         type="button"
         onClick={() => fileRef.current?.click()}
         disabled={disabled}
-        className="w-10 h-10 flex items-center justify-center text-gray-400 dark:text-gray-500 hover:text-quantum-500 dark:hover:text-quantum-400 transition-colors disabled:opacity-30 shrink-0"
+        className="w-10 h-10 flex items-center justify-center text-slate-400 dark:text-slate-500 hover:text-blue-500 dark:hover:text-blue-400 transition-colors disabled:opacity-30 shrink-0 cursor-pointer"
         title="Attach file or image"
       >
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -64,14 +63,14 @@ export default function MessageInput({ disabled, onSend, onSendFile }: Props) {
         onChange={(e) => setText(e.target.value)}
         disabled={disabled}
         placeholder={disabled ? 'Complete key exchange first...' : 'Type a message'}
-        className="flex-1 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full px-4 py-2.5 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-quantum-400 disabled:opacity-40"
+        className="flex-1 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-full px-4 py-2.5 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500/50 disabled:opacity-40 transition-all"
       />
 
       {/* Send button */}
       <button
         type="submit"
         disabled={disabled || !text.trim()}
-        className="w-10 h-10 flex items-center justify-center bg-quantum-500 hover:bg-quantum-600 text-white rounded-full transition-colors disabled:opacity-30 shrink-0"
+        className="w-10 h-10 flex items-center justify-center bg-gradient-to-r from-blue-500 to-emerald-500 hover:from-blue-600 hover:to-emerald-600 text-white rounded-full transition-all disabled:opacity-30 shrink-0 cursor-pointer hover:shadow-lg hover:shadow-blue-500/20"
       >
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />

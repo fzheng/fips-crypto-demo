@@ -13,20 +13,84 @@ code, .font-mono {
 /* Dark scrollbar */
 .dark ::-webkit-scrollbar { width: 6px; }
 .dark ::-webkit-scrollbar-track { background: transparent; }
-.dark ::-webkit-scrollbar-thumb { background: #374151; border-radius: 3px; }
-.dark ::-webkit-scrollbar-thumb:hover { background: #4b5563; }
+.dark ::-webkit-scrollbar-thumb { background: rgba(59,130,246,0.3); border-radius: 3px; }
+.dark ::-webkit-scrollbar-thumb:hover { background: rgba(59,130,246,0.5); }
 
 /* Light scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-/* Chat background — soft gradient instead of pattern */
+/* Chat background */
 .chat-bg {
-  background: linear-gradient(145deg, #e8e0d8 0%, #ede7e0 30%, #e4ddd5 60%, #ebe5de 100%);
+  background: linear-gradient(145deg, #f1f5f9 0%, #e2e8f0 50%, #f1f5f9 100%);
 }
 
 .dark .chat-bg {
-  background: linear-gradient(145deg, #0f1923 0%, #111d28 30%, #0d1720 60%, #101c26 100%);
+  background: linear-gradient(145deg, #0A0F1E 0%, #0f1729 30%, #130d24 60%, #0A0F1E 100%);
+}
+
+/* Glass card utility */
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.dark .glass-card {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Gradient border — use on a wrapper div with p-[1px] */
+.gradient-border {
+  background: linear-gradient(135deg, #3b82f6, #10b981);
+}
+
+.gradient-border-subtle {
+  background: linear-gradient(135deg, rgba(59,130,246,0.3), rgba(16,185,129,0.3));
+}
+
+.dark .gradient-border-subtle {
+  background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(16,185,129,0.2));
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow effect */
+.glow-blue {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.15), 0 0 40px rgba(59, 130, 246, 0.05);
+}
+
+.dark .glow-blue {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.2), 0 0 40px rgba(59, 130, 246, 0.1);
+}
+
+/* CSS spinner for key exchange */
+.ke-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(59, 130, 246, 0.2);
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ke-spinner {
+    animation: none;
+    border-top-color: rgba(59, 130, 246, 0.5);
+  }
 }

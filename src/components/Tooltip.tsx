@@ -28,7 +28,7 @@ export default function Tooltip({ term, explanation, children }: TooltipProps) {
   return (
     <span className="relative inline-block">
       <span
-        className="border-b border-dotted border-quantum-500 dark:border-quantum-400 cursor-help text-quantum-600 dark:text-quantum-300"
+        className="border-b border-dotted border-blue-500 dark:border-blue-400 cursor-help text-blue-600 dark:text-blue-400"
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
         onClick={() => setShow(!show)}
@@ -38,9 +38,9 @@ export default function Tooltip({ term, explanation, children }: TooltipProps) {
       {show && (
         <span
           ref={tipRef}
-          className={`absolute z-50 top-full ${alignClass} mt-2 w-72 p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-sm text-gray-700 dark:text-gray-200 shadow-xl`}
+          className={`absolute z-50 top-full ${alignClass} mt-2 w-72 p-3 rounded-xl glass-card border border-slate-200 dark:border-white/10 text-sm text-slate-700 dark:text-slate-200 shadow-xl`}
         >
-          <span className="font-semibold text-quantum-600 dark:text-quantum-300">{term}</span>
+          <span className="font-semibold text-blue-600 dark:text-blue-400">{term}</span>
           <br />
           {explanation}
         </span>

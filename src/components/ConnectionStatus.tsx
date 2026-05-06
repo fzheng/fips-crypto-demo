@@ -16,14 +16,18 @@ export default function ConnectionStatus({ state, serverUrl }: Props) {
   const { color, label } = stateConfig[state];
 
   return (
-    <div className="flex items-center justify-between px-4 py-1.5 bg-quantum-700 dark:bg-quantum-800 text-white text-xs">
-      <div className="flex items-center gap-2">
-        <span className={`w-2 h-2 rounded-full ${color}`} />
-        <span className="font-medium">{label}</span>
-        <span className="opacity-50">|</span>
-        <span className="font-mono opacity-60">{serverUrl}</span>
+    <div className="relative">
+      {/* Gradient accent line */}
+      <div className="h-[2px] bg-gradient-to-r from-blue-500 via-emerald-500 to-blue-500" />
+      <div className="flex items-center justify-between px-4 py-1.5 glass-card border-b border-slate-200 dark:border-white/5 text-xs">
+        <div className="flex items-center gap-2">
+          <span className={`w-2 h-2 rounded-full ${color}`} />
+          <span className="font-medium text-slate-700 dark:text-slate-200">{label}</span>
+          <span className="text-slate-300 dark:text-white/20">|</span>
+          <span className="font-mono text-slate-400 dark:text-slate-500">{serverUrl}</span>
+        </div>
+        <ThemeToggle />
       </div>
-      <ThemeToggle />
     </div>
   );
 }
